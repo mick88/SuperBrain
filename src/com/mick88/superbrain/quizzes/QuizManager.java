@@ -20,6 +20,13 @@ public class QuizManager extends DatabaseHelper
 		super(context);
 	}
 	
+	@Override
+	public void onCreate(SQLiteDatabase db)
+	{
+		super.onCreate(db);
+		createQuizzes(db);
+	}
+	
 	/**
 	 * Generate quizzes and insert them into the database
 	 * @param database
