@@ -250,7 +250,7 @@ public class QuizManager extends DatabaseHelper
 	
 	public List<Quiz> getQuizzes(String category)
 	{
-		return select(Quiz.class, "category='?'", new String[]{category}, null, null);
+		return select(Quiz.class, "`category`=?", new String[]{category}, null, null);
 	}
 	
 	public String [] getCategories()
