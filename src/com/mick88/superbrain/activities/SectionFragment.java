@@ -2,6 +2,7 @@ package com.mick88.superbrain.activities;
 
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,7 +15,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.mick88.superbrain.R;
+import com.mick88.superbrain.SuperBrainApplication;
 import com.mick88.superbrain.quizzes.Quiz;
+import com.mick88.superbrain.quizzes.QuizManager;
 
 /**
  * A dummy fragment representing a section of the app, but that simply displays
@@ -22,23 +25,30 @@ import com.mick88.superbrain.quizzes.Quiz;
  */
 public class SectionFragment extends Fragment
 {
+	public static final String EXTRA_CATEGORY = "quiz_category";
 	String categoryName;
 	List<Quiz> quizzes;
-	
-	public static final String ARG_SECTION_NUMBER = "section_number";
-
-	public SectionFragment() 
-	{
-	}
+	QuizManager quizManager;
 	
 	public void setCategoryName(String categoryName)
 	{
 		this.categoryName = categoryName;
 	}
 	
-	public void loadContent(List<Quiz> quizzes)
+	@Override
+	public void onCreate(Bundle savedInstanceState)
 	{
-		this.quizzes = quizzes;
+		super.onCreate(savedInstanceState);
+		String category = getArguments().getString(EXTRA_CATEGORY);
+		this.quizzes = quizManager.getQuizzes(category);
+	}
+	
+	@Override
+	public void onAttach(Activity activity)
+	{
+		super.onAttach(activity);
+		SuperBrainApplication application = (SuperBrainApplication) activity.getApplication();
+		this.quizManager = application.getQuizManager();
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.mick88.superbrain.activities;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -18,6 +19,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter
 	public SectionsPagerAdapter(FragmentManager fm, QuizManager quizManager) {
 		super(fm);
 		this.quizManager = quizManager;
+		categories = quizManager.getCategories();
 	}
 
 	@Override
@@ -25,9 +27,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter
 	{
 		String category = categories[position];
 		
+		Bundle args = new Bundle();
+		args.putString(SectionFragment.EXTRA_CATEGORY, category);
 		SectionFragment section = new SectionFragment();
+		section.setArguments(args);
 		section.setCategoryName(category);
-		section.loadContent(quizManager.getQuizzes(category));
 		
 		return section;
 	}
@@ -36,7 +40,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter
 	@Override
 	public int getCount()
 	{
-		return categories.length;
+		if (categories == null) return 0;
+		else return categories.length;
 	}
 	
 	@Override
