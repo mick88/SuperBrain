@@ -44,16 +44,6 @@ public class ListQuizActivity extends FragmentActivity
 		
 		this.application = (SuperBrainApplication) getApplication();
 		this.quizManager = application.getQuizManager();
-		
-		pages = new ArrayList<SectionFragment>();
-		String [] categories = quizManager.getCategories();
-		for (String category : categories)
-		{
-			SectionFragment section = new SectionFragment();
-			section.setCategoryName(category);
-			section.loadContent(quizManager.getQuizzes(category));
-			pages.add(section);
-		}
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.

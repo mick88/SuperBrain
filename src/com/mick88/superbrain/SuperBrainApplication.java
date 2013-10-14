@@ -10,7 +10,7 @@ public class SuperBrainApplication extends Application
 	@Override
 	public void onCreate()
 	{
-		this.quizManager = new QuizManager();
+		this.quizManager = new QuizManager(getApplicationContext());
 		super.onCreate();
 	}
 	

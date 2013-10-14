@@ -1,7 +1,5 @@
 package com.mick88.superbrain.activities;
 
-import java.util.Locale;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -14,7 +12,7 @@ import com.mick88.superbrain.SuperBrainApplication;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter
 {
-
+	String [] categories;
 	SuperBrainApplication application;
 	private final ListQuizActivity listQuizActivity;
 
@@ -22,14 +20,14 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter
 			FragmentManager fm) {
 		super(fm);
 		this.listQuizActivity = listQuizActivity;
-		
 		this.application = (SuperBrainApplication) this.listQuizActivity.getApplication();
+		categories = application.getQuizManager().getCategories();		
 	}
 
 	@Override
 	public Fragment getItem(int position)
 	{
-		String category = application.getQuizManager().getCategory(position);
+		String category = categories[position];
 		
 		SectionFragment section = new SectionFragment();
 		section.setCategoryName(category);
@@ -42,13 +40,19 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter
 	@Override
 	public int getCount()
 	{
-		return application.getQuizManager().getNumCategories();
+		return categories.length;
+	}
+	
+	@Override
+	public void notifyDataSetChanged()
+	{
+		categories = application.getQuizManager().getCategories();
+		super.notifyDataSetChanged();
 	}
 
 	@Override
 	public CharSequence getPageTitle(int position)
 	{
-		Locale l = Locale.getDefault();
-		return application.getQuizManager().getCategory(position).toUpperCase(l);
+		return categories[position];
 	}
 }
