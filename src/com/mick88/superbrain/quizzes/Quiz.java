@@ -10,13 +10,17 @@ public class Quiz
 	String name;
 	String description;
 	
+	public Quiz()
+	{
+		this.questions = new ArrayList<Question>();
+		this.description = "";
+	}
+	
 	public Quiz(String category, String name)
 	{
+		this();
 		this.category = category;
 		this.name = name;
-		
-		this.questions = new ArrayList<Question>();
-		this.description = new String();
 	}
 	
 	public Quiz(String category, String name, String description)
