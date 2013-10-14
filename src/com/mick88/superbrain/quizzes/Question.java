@@ -1,10 +1,12 @@
 package com.mick88.superbrain.quizzes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Question
+public class Question implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	String question;
 	Answer correctAnswer=null;
 	List<Answer> fakeAnswers;

@@ -1,7 +1,10 @@
 package com.mick88.superbrain.quizzes;
 
-public class Answer
+import java.io.Serializable;
+
+public class Answer implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	String text;
 	
 	public Answer(String answer)
