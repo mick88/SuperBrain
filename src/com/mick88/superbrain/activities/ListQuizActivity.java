@@ -1,7 +1,6 @@
 package com.mick88.superbrain.activities;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
@@ -47,8 +46,7 @@ public class ListQuizActivity extends FragmentActivity
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
-		mSectionsPagerAdapter = new SectionsPagerAdapter(
-				this, getSupportFragmentManager());
+		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), quizManager);
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
