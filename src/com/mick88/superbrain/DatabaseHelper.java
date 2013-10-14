@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 
 import com.michaldabski.msqlite.MSQLiteOpenHelper;
+import com.mick88.superbrain.quizzes.Quiz;
 
 public class DatabaseHelper extends MSQLiteOpenHelper
 {
@@ -15,7 +16,7 @@ public class DatabaseHelper extends MSQLiteOpenHelper
 			int version, Class<?>[] trackedClasses)
 	{
 		super(context, DATABASE_NAME, null, DATABASE_VERSION, new Class<?>[]{
-				
+				Quiz.class,
 		});
 	}
 	
