@@ -16,34 +16,14 @@
         android:text="Question"
         android:textAppearance="@android:style/TextAppearance.Holo.Large" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout1"
+    <ListView
+        android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:orientation="vertical" >
-
-        <Button
-            android:id="@+id/btnAnswer1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Answer 1"
-            android:textAppearance="@android:style/TextAppearance.Holo.Large" />
-
-        <Button
-            android:id="@+id/btnAnswer2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Answer 2"
-            android:textAppearance="@android:style/TextAppearance.Holo.Large" />
-
-        <Button
-            android:id="@+id/btnAnswer3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Answer 3"
-            android:textAppearance="@android:style/TextAppearance.Holo.Large" />
-    </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvQuestion"
+        android:orientation="vertical" />
 
 </RelativeLayout>

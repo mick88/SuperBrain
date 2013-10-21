@@ -1,6 +1,5 @@
 package com.mick88.superbrain.quiz;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -15,9 +14,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.mick88.superbrain.R;
 import com.mick88.superbrain.SuperBrainApplication;
@@ -25,7 +26,7 @@ import com.mick88.superbrain.quizzes.Answer;
 import com.mick88.superbrain.quizzes.Question;
 import com.mick88.superbrain.quizzes.Quiz;
 
-public class QuizActivity extends Activity
+public class QuizActivity extends Activity implements OnItemClickListener
 {
 
 	Quiz quiz;
@@ -34,10 +35,10 @@ public class QuizActivity extends Activity
 	HashMap<Question, Answer> answeredQuestions;
 	
 	TextView tvQuestion;
-	Button btnAnswer1, btnAnswer2, btnAnswer3;
 	
 	public static final String 
 		EXTRA_ID = "quiz_id";
+	private ListView listAnswers;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -49,9 +50,8 @@ public class QuizActivity extends Activity
 		
 		tvQuestion = (TextView) findViewById(R.id.tvQuestion);
 		
-		btnAnswer1 = (Button) findViewById(R.id.btnAnswer1);
-		btnAnswer2 = (Button) findViewById(R.id.btnAnswer2);
-		btnAnswer3 = (Button) findViewById(R.id.btnAnswer3);
+		listAnswers = (ListView) findViewById(android.R.id.list);
+		listAnswers.setOnItemClickListener(this);
 		
 		answeredQuestions = new HashMap<Question, Answer>();
 		
@@ -116,46 +116,10 @@ public class QuizActivity extends Activity
 		Question question = getCurrentQuestion();
 		
 		tvQuestion.setText(question.getQuestion());
+		List<Answer> answers = question.getPossibleAnswersRandomized(new Random(System.currentTimeMillis()));
 		
-		final Answer[] answers = new Answer[] {question.getCorrectAnswer(), 
-				question.getFakeAnswers().get(0), 
-				question.getFakeAnswers().get(1)};
-		
-		btnAnswer1.setText(answers[0].getText());
-		btnAnswer1.setOnClickListener(new OnClickListener()
-		{
-			
-			@Override
-			public void onClick(View v)
-			{
-				onAnswerSelected(answers[0]);
-				
-			}
-		});
-		
-		btnAnswer2.setText(answers[1].getText());
-		btnAnswer2.setOnClickListener(new OnClickListener()
-		{
-			
-			@Override
-			public void onClick(View v)
-			{
-				onAnswerSelected(answers[1]);
-				
-			}
-		});
-		
-		btnAnswer3.setText(answers[2].getText());
-		btnAnswer3.setOnClickListener(new OnClickListener()
-		{
-			
-			@Override
-			public void onClick(View v)
-			{
-				onAnswerSelected(answers[2]);
-				
-			}
-		});
+		ArrayAdapter<Answer> answerAdapter = new ArrayAdapter<Answer>(this, android.R.layout.simple_list_item_1, android.R.id.text1, answers);
+		listAnswers.setAdapter(answerAdapter);		
 	}
 	
 	private Question getCurrentQuestion()
@@ -187,6 +151,13 @@ public class QuizActivity extends Activity
 	{
 		getMenuInflater().inflate(R.menu.quiz, menu);
 		return false;
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> adapterView, View view, int position, long arg3)
+	{
+		Answer selectedAnswer = (Answer) adapterView.getItemAtPosition(position);
+		onAnswerSelected(selectedAnswer);
 	}
 
 }
