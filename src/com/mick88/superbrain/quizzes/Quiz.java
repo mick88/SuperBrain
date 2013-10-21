@@ -84,4 +84,23 @@ public class Quiz
 	{
 		return name;
 	}
+	
+	@Override
+	public int hashCode()
+	{
+		if (id != null) return id.hashCode();
+		else return name.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+
+		if (o instanceof Quiz)
+			if (id != null)
+				return id.equals(((Quiz) o).id);
+			else 
+				return name.equals(((Quiz) o).name);
+		return super.equals(o);
+	}
 }
