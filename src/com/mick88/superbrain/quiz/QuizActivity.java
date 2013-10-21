@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -119,7 +120,13 @@ public class QuizActivity extends Activity implements OnItemClickListener
 		List<Answer> answers = question.getPossibleAnswersRandomized(new Random(System.currentTimeMillis()));
 		
 		ArrayAdapter<Answer> answerAdapter = new QuizAnswerAdapter(this, answers);
-		listAnswers.setAdapter(answerAdapter);		
+		listAnswers.setAdapter(answerAdapter);
+		
+		ProgressBar progressBar = (ProgressBar) findViewById(android.R.id.progress);
+		TextView tvProgress = (TextView) findViewById(R.id.tvProgress);
+		progressBar.setMax(quiz.getNumQuestions());
+		progressBar.setProgress(currentQuestionId+1);
+		tvProgress.setText(String.format(Locale.ENGLISH, "%d of %d", currentQuestionId+1, quiz.getNumQuestions()));
 	}
 	
 	private Question getCurrentQuestion()
