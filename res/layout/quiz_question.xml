@@ -8,10 +8,15 @@
 
     <TextView
         android:id="@+id/tvQuestion"
+        android:layout_margin="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Question"
         android:textAppearance="@android:style/TextAppearance.Holo.Large" />
+    
+    <View android:layout_height="3dp"
+        android:layout_width="match_parent"
+        android:background="#880092f4"/>
 
     <ListView
         android:id="@android:id/list"
