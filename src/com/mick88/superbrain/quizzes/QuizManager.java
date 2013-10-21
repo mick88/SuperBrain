@@ -252,7 +252,10 @@ public class QuizManager extends DatabaseHelper
 	
 	public Quiz getQuiz(int id)
 	{
-		return select(Quiz.class, "`id`=?", new String[]{String.valueOf(id)}, null, "1").get(0);
+		SQLiteDatabase database = getReadableDatabase();
+		Quiz quiz = selectFirst(database, Quiz.class, "`id`=?", new String[]{String.valueOf(id)}, null);
+		database.close();
+		return quiz;
 	}
 	
 	public String [] getCategories()
