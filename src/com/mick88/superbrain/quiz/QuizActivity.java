@@ -1,4 +1,4 @@
-package com.mick88.superbrain.activities;
+package com.mick88.superbrain.quiz;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -33,8 +33,8 @@ public class QuizActivity extends Activity
 	TextView tvQuestion;
 	Button btnAnswer1, btnAnswer2, btnAnswer3;
 	
-	public static final String KEY_CATEGORY = "quiz_category",
-			KEY_ID = "quiz_id";
+	public static final String 
+		EXTRA_ID = "quiz_id";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -56,11 +56,9 @@ public class QuizActivity extends Activity
 		if (intent != null)
 		{
 			Bundle extras = intent.getExtras();
+			int quiz_id = extras.getInt(EXTRA_ID);
 			
-			String category = extras.getString(KEY_CATEGORY);
-			int quiz_id = extras.getInt(KEY_ID);
-			
-			this.quiz = ((SuperBrainApplication) getApplication()).getQuizManager().getQuizzes(category).get(quiz_id);
+			this.quiz = ((SuperBrainApplication) getApplication()).getQuizManager().getQuiz(quiz_id);
 			setTitle(String.format(Locale.ENGLISH, "%s: %s", quiz.getCategory(), quiz.getName()));
 			
 			displayCurrentQuestion();

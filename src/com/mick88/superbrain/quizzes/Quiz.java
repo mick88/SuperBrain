@@ -3,8 +3,12 @@ package com.mick88.superbrain.quizzes;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.michaldabski.msqlite.Annotations.PrimaryKey;
+
 public class Quiz
 {
+	@PrimaryKey
+	Integer id=null;
 	List<Question> questions;
 	String category;
 	String name;
@@ -68,6 +72,11 @@ public class Quiz
 		}
 		
 		return result;
+	}
+	
+	public Integer getId()
+	{
+		return id;
 	}
 	
 	@Override

@@ -1,10 +1,7 @@
 package com.mick88.superbrain.quizzes;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -251,6 +248,11 @@ public class QuizManager extends DatabaseHelper
 	public List<Quiz> getQuizzes(String category)
 	{
 		return select(Quiz.class, "`category`=?", new String[]{category}, null, null);
+	}
+	
+	public Quiz getQuiz(int id)
+	{
+		return select(Quiz.class, "`id`=?", new String[]{String.valueOf(id)}, null, "1").get(0);
 	}
 	
 	public String [] getCategories()

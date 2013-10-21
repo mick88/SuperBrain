@@ -1,4 +1,4 @@
-package com.mick88.superbrain.activities;
+package com.mick88.superbrain.main;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -1,4 +1,4 @@
-package com.mick88.superbrain.activities;
+package com.mick88.superbrain.main;
 
 import java.util.List;
 
@@ -16,6 +16,7 @@ import android.widget.ListView;
 
 import com.mick88.superbrain.R;
 import com.mick88.superbrain.SuperBrainApplication;
+import com.mick88.superbrain.quiz.QuizActivity;
 import com.mick88.superbrain.quizzes.Quiz;
 import com.mick88.superbrain.quizzes.QuizManager;
 
@@ -72,10 +73,11 @@ public class SectionFragment extends Fragment
 				public void onItemClick(AdapterView<?> arg0, View arg1,
 						int arg2, long id)
 				{
-//					Toast.makeText(getActivity(), String.valueOf(id)+" clicked in "+categoryName, Toast.LENGTH_SHORT).show();
+					Quiz quiz = (Quiz) arg0.getItemAtPosition(arg2);
+					if (quiz.getId() == null)
+						throw new NullPointerException("Quiz id is null.");
 					Intent intent = new Intent(getActivity(), QuizActivity.class);
-					intent.putExtra(QuizActivity.KEY_CATEGORY, categoryName);
-					intent.putExtra(QuizActivity.KEY_ID, (int)id);
+					intent.putExtra(QuizActivity.EXTRA_ID, quiz.getId());
 					
 					getActivity().startActivity(intent);
 					

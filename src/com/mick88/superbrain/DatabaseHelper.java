@@ -8,7 +8,7 @@ import com.mick88.superbrain.quizzes.Quiz;
 public class DatabaseHelper extends MSQLiteOpenHelper
 {
 
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 	private static final String DATABASE_NAME = "super_brain.db";
 
 	public DatabaseHelper(Context context)

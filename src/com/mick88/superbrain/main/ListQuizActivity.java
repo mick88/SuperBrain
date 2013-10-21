@@ -1,4 +1,4 @@
-package com.mick88.superbrain.activities;
+package com.mick88.superbrain.main;
 
 
 import java.util.List;
