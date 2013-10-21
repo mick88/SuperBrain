@@ -55,4 +55,10 @@ public class Question implements Serializable
 	{
 		return correctAnswer.equals(answer);
 	}
+	
+	@Override
+	public String toString()
+	{
+		return question;
+	}
 }
