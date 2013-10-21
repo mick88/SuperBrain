@@ -2,7 +2,9 @@ package com.mick88.superbrain.quizzes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Question implements Serializable
 {
@@ -49,6 +51,21 @@ public class Question implements Serializable
 	public List<Answer> getFakeAnswers()
 	{
 		return fakeAnswers;
+	}
+	
+	public List<Answer> getPossibleAnswers()
+	{
+		List<Answer> result = new ArrayList<Answer>(fakeAnswers.size() + 1);
+		result.add(correctAnswer);
+		result.addAll(fakeAnswers);
+		return result;
+	}
+	
+	public List<Answer> getPossibleAnswersRandomized(Random random)
+	{
+		List<Answer> result = getPossibleAnswers();
+		Collections.shuffle(result, random);
+		return result;
 	}
 	
 	public boolean isCorrectAnswer(Answer answer)
