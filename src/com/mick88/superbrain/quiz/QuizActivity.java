@@ -2,6 +2,7 @@ package com.mick88.superbrain.quiz;
 
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Random;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -60,6 +61,8 @@ public class QuizActivity extends Activity
 			
 			this.quiz = ((SuperBrainApplication) getApplication()).getQuizManager().getQuiz(quiz_id);
 			setTitle(String.format(Locale.ENGLISH, "%s: %s", quiz.getCategory(), quiz.getName()));
+			
+			quiz.randomizeQuestions(new Random(System.currentTimeMillis()));
 			
 			displayCurrentQuestion();
 		}

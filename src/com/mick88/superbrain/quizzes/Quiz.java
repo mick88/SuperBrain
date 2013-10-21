@@ -1,7 +1,10 @@
 package com.mick88.superbrain.quizzes;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import com.michaldabski.msqlite.Annotations.PrimaryKey;
 
@@ -37,6 +40,11 @@ public class Quiz
 	{
 		questions.add(question);
 		return this;
+	}
+	
+	public void randomizeQuestions(Random random)
+	{
+		Collections.shuffle(questions, random);
 	}
 	
 	public List<Question> getQuestions()
