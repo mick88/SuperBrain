@@ -118,7 +118,7 @@ public class QuizActivity extends Activity implements OnItemClickListener
 		tvQuestion.setText(question.getQuestion());
 		List<Answer> answers = question.getPossibleAnswersRandomized(new Random(System.currentTimeMillis()));
 		
-		ArrayAdapter<Answer> answerAdapter = new ArrayAdapter<Answer>(this, android.R.layout.simple_list_item_1, android.R.id.text1, answers);
+		ArrayAdapter<Answer> answerAdapter = new QuizAnswerAdapter(this, answers);
 		listAnswers.setAdapter(answerAdapter);		
 	}
 	
