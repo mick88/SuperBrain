@@ -92,11 +92,11 @@ public class ListQuizActivity extends FragmentActivity
 	
 	void reloadCategories(String showCategory)
 	{
-		Intent intent = new Intent(getApplicationContext(), ListQuizActivity.class);
+		Intent intent = getIntent();
 		if (showCategory != null)
 			intent.putExtra(EXTRA_SHOW_CATEGORY, showCategory);
-		startActivity(intent);
 		finish();
+		startActivity(intent);
 	}
 	
 	@Override
