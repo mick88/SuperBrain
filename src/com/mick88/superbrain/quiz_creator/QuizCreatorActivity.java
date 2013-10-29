@@ -1,12 +1,11 @@
 package com.mick88.superbrain.quiz_creator;
 
-import android.animation.ArgbEvaluator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -118,6 +117,21 @@ public class QuizCreatorActivity extends FragmentActivity
 			case R.id.menu_save:
 				quiz.setCategory(editCategory.getText().toString());
 				quiz.setName(editName.getText().toString());
+				editCategory.setError(null);
+				editName.setError(null);
+				if (TextUtils.isEmpty(editCategory.getText()))
+				{
+					editCategory.setError(getString(R.string.please_specify_category));
+					editCategory.requestFocus();
+					return true;
+				}
+				if (TextUtils.isEmpty(editName.getText()))
+				{
+					editName.setError(getString(R.string.please_enter_name_for_your_quiz));
+					editName.requestFocus();
+					return true;
+				}
+				
 				if (quiz.validate())
 				{
 					quizManager.replace(quiz);
