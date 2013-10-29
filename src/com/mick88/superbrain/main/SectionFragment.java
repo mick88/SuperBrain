@@ -33,6 +33,7 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 	String categoryName;
 	List<Quiz> quizzes;
 	QuizManager quizManager;
+	private ListView listView;
 	
 	public void setCategoryName(String categoryName)
 	{
@@ -54,6 +55,12 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 		SuperBrainApplication application = (SuperBrainApplication) activity.getApplication();
 		this.quizManager = application.getQuizManager();
 	}
+	
+	void populateList()
+	{
+		ArrayAdapter<Quiz> adapter = new ArrayAdapter<Quiz>(getActivity(), android.R.layout.simple_list_item_1, quizzes);
+		listView.setAdapter(adapter);
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,12 +69,9 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 		
 		View rootView = inflater.inflate(R.layout.fragment_list_quizes,
 				container, false);
-		if (quizzes != null)
-		{
-			ListView listView = (ListView) rootView
+		
+		listView = (ListView) rootView
 				.findViewById(R.id.listOfQuizzes);
-			ArrayAdapter<Quiz> adapter = new ArrayAdapter<Quiz>(getActivity(), android.R.layout.simple_list_item_1, quizzes);
-			listView.setAdapter(adapter);
 			
 			listView.setOnItemClickListener(new OnItemClickListener()
 			{
@@ -87,7 +91,7 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 				}
 			});
 			listView.setOnItemLongClickListener(this);
-		}
+			populateList();
 
 		/*
 		 * dummyTextView.setText(Integer.toString(getArguments().getInt(
@@ -95,12 +99,25 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 		 */
 		return rootView;
 	}
+	@Override
+	public void onDestroyView()
+	{
+		super.onDestroyView();
+		this.listView = null;
+	}
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == REQUEST_ID_EDIT_QUIZ)
+		{
+			if (resultCode == Activity.RESULT_OK)
+			{
+				this.quizzes = quizManager.getQuizzes(categoryName);
+				populateList();
+			}
+		}
 	}
 
 	@Override
