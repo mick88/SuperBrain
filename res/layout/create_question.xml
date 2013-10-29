@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:drawableLeft="@drawable/ic_question"
+        android:singleLine="true"
         android:hint="@string/question" >
 
         <requestFocus />
@@ -20,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:singleLine="true"
         android:drawableLeft="@drawable/ic_answer_correct"
         android:hint="@string/correct_answer" />
 
@@ -28,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:singleLine="true"
         android:drawableLeft="@drawable/ic_answer_wrong"
         android:hint="@string/answer2" />
 
@@ -36,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:singleLine="true"
         android:drawableLeft="@drawable/ic_answer_wrong"
         android:hint="@string/answer3" />
 
