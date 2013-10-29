@@ -29,6 +29,7 @@
         </activity>
         <activity
             android:name="com.mick88.superbrain.quiz_creator.QuizCreatorActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/create_quiz" >
         </activity>
     </application>
