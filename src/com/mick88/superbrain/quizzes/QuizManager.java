@@ -31,215 +31,39 @@ public class QuizManager extends DatabaseHelper
 	private void createQuizzes(SQLiteDatabase database)
 	{	
 		List<Quiz> newQuizzes = new ArrayList<Quiz>();
-		newQuizzes.add(new Quiz("Programming", "General")
+		newQuizzes.add(new Quiz("Computer Science", "Programming")
 				.addQuestion(new Question("How do you break out of a loop?", "break;").setFakeAnswers(new String[] {"continue;", "return;"}))
 				.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
 				.addQuestion(new Question("Which function is called first?", "main()").setFakeAnswers(new String[] {"onCreate()", "start()"}))
+				.addQuestion(new Question("Which loop evaluates condition after execution?", "do ... while").setFakeAnswers(new String[] {"foreach", "while"}))
+				.addQuestion(new Question("Which language is commonly used to program for Android?", "Java").setFakeAnswers(new String[] {"C#", "C++"}))
 				);
 		
-		newQuizzes.add(new Quiz("Programming", "C#")
+		newQuizzes.add(new Quiz("Computer Science", "C#")
 		.addQuestion(new Question("Object template is a ", "Class").setFakeAnswers(new String[] {"Method", "Pointer"}))
 		.addQuestion(new Question("Increasing by 1 is", "increment").setFakeAnswers(new String[] {"decrement", "return"}))
 		.addQuestion(new Question("Is called when object is instantiated", "Constructor").setFakeAnswers(new String[] {"main()", "destructor"}))
 		);
 		
+		newQuizzes.add(new Quiz("Computer Science", "HCI")
+		.addQuestion(new Question("Mismatch between a user's goal for action and the means to execute that goal is called", "gulf of execution").setFakeAnswers(new String[] {"gulf of evaluation", "action"}))
+		.addQuestion(new Question("What does HCI stand for?", "Human Computer Interaction").setFakeAnswers(new String[] {"Human Computer Interface", "Human Computer Industry"}))
+		.addQuestion(new Question("Which one of these would NOT be found in a good HCI? ", "A long command line to achieve a function ").setFakeAnswers(new String[] {"Icons that can have specific meanings.", "Common short cuts, like CTRL+Z for undo."}))
+		.addQuestion(new Question("Which of these films uses futuristic HCI?", "Minority Report").setFakeAnswers(new String[] {"Bambi", "Speed"}))
+		);
+		
+		newQuizzes.add(new Quiz("Trivia", "Common knowledge")
+		.addQuestion(new Question("What year did man land on moon?", "1969").setFakeAnswers(new String[] {"1988", "1971"}))
+		.addQuestion(new Question("President of Ireland is...", "Michael D. Higgins").setFakeAnswers(new String[] {"Michael Dabski", "Bono"}))
+		.addQuestion(new Question("Which of the following is not a current gen game console ", "Cube").setFakeAnswers(new String[] {"XBOX 360", "Play Station 3"}))
+		.addQuestion(new Question("What are 3 main colours?", "Red, Green & Blue").setFakeAnswers(new String[] {"Red, Black & Yellow", "White, Green and Yellow"}))
+		);
+		
 		newQuizzes.add(new Quiz("Mathematics", "Basic operations")
 		.addQuestion(new Question("1+1=", "2").setFakeAnswers(new String[] {"1", "3"}))
 		.addQuestion(new Question("5 x 5", "25").setFakeAnswers(new String[] {"30", "15"}))
-		);
-		
-		newQuizzes.add(new Quiz("Mathematics", "Number Theory")
-		.addQuestion(new Question("1+1=", "2").setFakeAnswers(new String[] {"1", "3"}))
-		.addQuestion(new Question("5 x 5", "25").setFakeAnswers(new String[] {"30", "15"}))
-		);
-		
-		newQuizzes.add(new Quiz("Mathematics", "Statistics")
-		.addQuestion(new Question("1+1=", "2").setFakeAnswers(new String[] {"1", "3"}))
-		.addQuestion(new Question("5 x 5", "25").setFakeAnswers(new String[] {"30", "15"}))
-		);
-		
-		newQuizzes.add(new Quiz("Mathematics", "Algebra")
-		.addQuestion(new Question("1+1=", "2").setFakeAnswers(new String[] {"1", "3"}))
-		.addQuestion(new Question("5 x 5", "25").setFakeAnswers(new String[] {"30", "15"}))
-		);
-		
-		newQuizzes.add(new Quiz("Mathematics", "Sets")
-		.addQuestion(new Question("1+1=", "2").setFakeAnswers(new String[] {"1", "3"}))
-		.addQuestion(new Question("5 x 5", "25").setFakeAnswers(new String[] {"30", "15"}))
-		);
-		
-		newQuizzes.add(new Quiz("Programming", "Android")
-		.addQuestion(new Question("How do you break out of a loop?", "break;").setFakeAnswers(new String[] {"continue;", "return;"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which function is called first?", "main()").setFakeAnswers(new String[] {"onCreate()", "start()"}))
-		);
-		
-		newQuizzes.add(new Quiz("Programming", "Linux Shell")
-		.addQuestion(new Question("How do you break out of a loop?", "break;").setFakeAnswers(new String[] {"continue;", "return;"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which function is called first?", "main()").setFakeAnswers(new String[] {"onCreate()", "start()"}))
-		);
-		
-		newQuizzes.add(new Quiz("Programming", "Basic")
-		.addQuestion(new Question("How do you break out of a loop?", "break;").setFakeAnswers(new String[] {"continue;", "return;"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which function is called first?", "main()").setFakeAnswers(new String[] {"onCreate()", "start()"}))
-		);
-		
-		newQuizzes.add(new Quiz("Programming", "Visual Studio")
-		.addQuestion(new Question("How do you break out of a loop?", "break;").setFakeAnswers(new String[] {"continue;", "return;"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which function is called first?", "main()").setFakeAnswers(new String[] {"onCreate()", "start()"}))
-		);
-		
-		newQuizzes.add(new Quiz("Programming", "Delphi")
-		.addQuestion(new Question("How do you break out of a loop?", "break;").setFakeAnswers(new String[] {"continue;", "return;"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which function is called first?", "main()").setFakeAnswers(new String[] {"onCreate()", "start()"}))
-		);
-		
-		newQuizzes.add(new Quiz("Programming", "Haskell")
-		.addQuestion(new Question("How do you break out of a loop?", "break;").setFakeAnswers(new String[] {"continue;", "return;"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which function is called first?", "main()").setFakeAnswers(new String[] {"onCreate()", "start()"}))
-		);
-		
-		newQuizzes.add(new Quiz("Programming", "Assembly")
-		.addQuestion(new Question("How do you break out of a loop?", "break;").setFakeAnswers(new String[] {"continue;", "return;"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which function is called first?", "main()").setFakeAnswers(new String[] {"onCreate()", "start()"}))
-		);
-		
-		newQuizzes.add(new Quiz("Programming", "C")
-		.addQuestion(new Question("How do you break out of a loop?", "break;").setFakeAnswers(new String[] {"continue;", "return;"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which function is called first?", "main()").setFakeAnswers(new String[] {"onCreate()", "start()"}))
-		);
-		
-		newQuizzes.add(new Quiz("Programming", "Java")
-		.addQuestion(new Question("How do you break out of a loop?", "break;").setFakeAnswers(new String[] {"continue;", "return;"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which function is called first?", "main()").setFakeAnswers(new String[] {"onCreate()", "start()"}))
-		);
-		
-		newQuizzes.add(new Quiz("Programming", "Pascal")
-		.addQuestion(new Question("How do you break out of a loop?", "break;").setFakeAnswers(new String[] {"continue;", "return;"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which of these is not OOP?", "C").setFakeAnswers(new String[] {"C#", "Java"}))
-		.addQuestion(new Question("Which function is called first?", "main()").setFakeAnswers(new String[] {"onCreate()", "start()"}))
-		);
-		
-		newQuizzes.add(new Quiz("HCI", "General")
-		.addQuestion(new Question("Mismatch between a user's goal for action and the means to execute that goal is called", "gulf of execution").setFakeAnswers(new String[] {"gulf of evaluation", "action"}))
-		.addQuestion(new Question("What does HCI stand for?", "Human Computer Interaction").setFakeAnswers(new String[] {"Human Computer Interface", "Human Computer Industry"}))
-		.addQuestion(new Question("Which one of these would NOT be found in a good HCI? ", "A long command line to achieve a function ").setFakeAnswers(new String[] {"Icons that can have specific meanings.", "Common short cuts, like CTRL+Z for undo."}))
-		.addQuestion(new Question("Which of these films uses futuristic HCI?", "Minority Report").setFakeAnswers(new String[] {"Bambi", "Speed"}))
-		);
-		
-		newQuizzes.add(new Quiz("HCI", "Week 1")
-		.addQuestion(new Question("Mismatch between a user's goal for action and the means to execute that goal is called", "gulf of execution").setFakeAnswers(new String[] {"gulf of evaluation", "action"}))
-		.addQuestion(new Question("What does HCI stand for?", "Human Computer Interaction").setFakeAnswers(new String[] {"Human Computer Interface", "Human Computer Industry"}))
-		.addQuestion(new Question("Which one of these would NOT be found in a good HCI? ", "A long command line to achieve a function ").setFakeAnswers(new String[] {"Icons that can have specific meanings.", "Common short cuts, like CTRL+Z for undo."}))
-		.addQuestion(new Question("Which of these films uses futuristic HCI?", "Minority Report").setFakeAnswers(new String[] {"Bambi", "Speed"}))
-		);
-		
-		newQuizzes.add(new Quiz("HCI", "Week 2")
-		.addQuestion(new Question("Mismatch between a user's goal for action and the means to execute that goal is called", "gulf of execution").setFakeAnswers(new String[] {"gulf of evaluation", "action"}))
-		.addQuestion(new Question("What does HCI stand for?", "Human Computer Interaction").setFakeAnswers(new String[] {"Human Computer Interface", "Human Computer Industry"}))
-		.addQuestion(new Question("Which one of these would NOT be found in a good HCI? ", "A long command line to achieve a function ").setFakeAnswers(new String[] {"Icons that can have specific meanings.", "Common short cuts, like CTRL+Z for undo."}))
-		.addQuestion(new Question("Which of these films uses futuristic HCI?", "Minority Report").setFakeAnswers(new String[] {"Bambi", "Speed"}))
-		);
-		
-		newQuizzes.add(new Quiz("HCI", "Week 3")
-		.addQuestion(new Question("Mismatch between a user's goal for action and the means to execute that goal is called", "gulf of execution").setFakeAnswers(new String[] {"gulf of evaluation", "action"}))
-		.addQuestion(new Question("What does HCI stand for?", "Human Computer Interaction").setFakeAnswers(new String[] {"Human Computer Interface", "Human Computer Industry"}))
-		.addQuestion(new Question("Which one of these would NOT be found in a good HCI? ", "A long command line to achieve a function ").setFakeAnswers(new String[] {"Icons that can have specific meanings.", "Common short cuts, like CTRL+Z for undo."}))
-		.addQuestion(new Question("Which of these films uses futuristic HCI?", "Minority Report").setFakeAnswers(new String[] {"Bambi", "Speed"}))
-		);
-		
-		newQuizzes.add(new Quiz("HCI", "Week 4")
-		.addQuestion(new Question("Mismatch between a user's goal for action and the means to execute that goal is called", "gulf of execution").setFakeAnswers(new String[] {"gulf of evaluation", "action"}))
-		.addQuestion(new Question("What does HCI stand for?", "Human Computer Interaction").setFakeAnswers(new String[] {"Human Computer Interface", "Human Computer Industry"}))
-		.addQuestion(new Question("Which one of these would NOT be found in a good HCI? ", "A long command line to achieve a function ").setFakeAnswers(new String[] {"Icons that can have specific meanings.", "Common short cuts, like CTRL+Z for undo."}))
-		.addQuestion(new Question("Which of these films uses futuristic HCI?", "Minority Report").setFakeAnswers(new String[] {"Bambi", "Speed"}))
-		);
-		
-		newQuizzes.add(new Quiz("HCI", "Week 5")
-		.addQuestion(new Question("Mismatch between a user's goal for action and the means to execute that goal is called", "gulf of execution").setFakeAnswers(new String[] {"gulf of evaluation", "action"}))
-		.addQuestion(new Question("What does HCI stand for?", "Human Computer Interaction").setFakeAnswers(new String[] {"Human Computer Interface", "Human Computer Industry"}))
-		.addQuestion(new Question("Which one of these would NOT be found in a good HCI? ", "A long command line to achieve a function ").setFakeAnswers(new String[] {"Icons that can have specific meanings.", "Common short cuts, like CTRL+Z for undo."}))
-		.addQuestion(new Question("Which of these films uses futuristic HCI?", "Minority Report").setFakeAnswers(new String[] {"Bambi", "Speed"}))
-		);
-		
-		newQuizzes.add(new Quiz("General CS", "Linux")
-		.addQuestion(new Question("Mismatch between a user's goal for action and the means to execute that goal is called", "gulf of execution").setFakeAnswers(new String[] {"gulf of evaluation", "action"}))
-		.addQuestion(new Question("What does HCI stand for?", "Human Computer Interaction").setFakeAnswers(new String[] {"Human Computer Interface", "Human Computer Industry"}))
-		.addQuestion(new Question("Which one of these would NOT be found in a good HCI? ", "A long command line to achieve a function ").setFakeAnswers(new String[] {"Icons that can have specific meanings.", "Common short cuts, like CTRL+Z for undo."}))
-		.addQuestion(new Question("Which of these films uses futuristic HCI?", "Minority Report").setFakeAnswers(new String[] {"Bambi", "Speed"}))
-		);
-		
-		newQuizzes.add(new Quiz("General CS", "Mac")
-		.addQuestion(new Question("Mismatch between a user's goal for action and the means to execute that goal is called", "gulf of execution").setFakeAnswers(new String[] {"gulf of evaluation", "action"}))
-		.addQuestion(new Question("What does HCI stand for?", "Human Computer Interaction").setFakeAnswers(new String[] {"Human Computer Interface", "Human Computer Industry"}))
-		.addQuestion(new Question("Which one of these would NOT be found in a good HCI? ", "A long command line to achieve a function ").setFakeAnswers(new String[] {"Icons that can have specific meanings.", "Common short cuts, like CTRL+Z for undo."}))
-		.addQuestion(new Question("Which of these films uses futuristic HCI?", "Minority Report").setFakeAnswers(new String[] {"Bambi", "Speed"}))
-		);
-		
-		newQuizzes.add(new Quiz("Databases", "General")
-		.addQuestion(new Question("Mismatch between a user's goal for action and the means to execute that goal is called", "gulf of execution").setFakeAnswers(new String[] {"gulf of evaluation", "action"}))
-		.addQuestion(new Question("What does HCI stand for?", "Human Computer Interaction").setFakeAnswers(new String[] {"Human Computer Interface", "Human Computer Industry"}))
-		.addQuestion(new Question("Which one of these would NOT be found in a good HCI? ", "A long command line to achieve a function ").setFakeAnswers(new String[] {"Icons that can have specific meanings.", "Common short cuts, like CTRL+Z for undo."}))
-		.addQuestion(new Question("Which of these films uses futuristic HCI?", "Minority Report").setFakeAnswers(new String[] {"Bambi", "Speed"}))
-		);
-		
-		newQuizzes.add(new Quiz("PPD", "File Operations")
-		.addQuestion(new Question("Mismatch between a user's goal for action and the means to execute that goal is called", "gulf of execution").setFakeAnswers(new String[] {"gulf of evaluation", "action"}))
-		.addQuestion(new Question("What does HCI stand for?", "Human Computer Interaction").setFakeAnswers(new String[] {"Human Computer Interface", "Human Computer Industry"}))
-		.addQuestion(new Question("Which one of these would NOT be found in a good HCI? ", "A long command line to achieve a function ").setFakeAnswers(new String[] {"Icons that can have specific meanings.", "Common short cuts, like CTRL+Z for undo."}))
-		.addQuestion(new Question("Which of these films uses futuristic HCI?", "Minority Report").setFakeAnswers(new String[] {"Bambi", "Speed"}))
-		);
-		
-		newQuizzes.add(new Quiz("PPD", "Database Operations")
-		.addQuestion(new Question("Mismatch between a user's goal for action and the means to execute that goal is called", "gulf of execution").setFakeAnswers(new String[] {"gulf of evaluation", "action"}))
-		.addQuestion(new Question("What does HCI stand for?", "Human Computer Interaction").setFakeAnswers(new String[] {"Human Computer Interface", "Human Computer Industry"}))
-		.addQuestion(new Question("Which one of these would NOT be found in a good HCI? ", "A long command line to achieve a function ").setFakeAnswers(new String[] {"Icons that can have specific meanings.", "Common short cuts, like CTRL+Z for undo."}))
-		.addQuestion(new Question("Which of these films uses futuristic HCI?", "Minority Report").setFakeAnswers(new String[] {"Bambi", "Speed"}))
-		);
-		
-		newQuizzes.add(new Quiz("PPD", "Bitmap encoding")
-		.addQuestion(new Question("Mismatch between a user's goal for action and the means to execute that goal is called", "gulf of execution").setFakeAnswers(new String[] {"gulf of evaluation", "action"}))
-		.addQuestion(new Question("What does HCI stand for?", "Human Computer Interaction").setFakeAnswers(new String[] {"Human Computer Interface", "Human Computer Industry"}))
-		.addQuestion(new Question("Which one of these would NOT be found in a good HCI? ", "A long command line to achieve a function ").setFakeAnswers(new String[] {"Icons that can have specific meanings.", "Common short cuts, like CTRL+Z for undo."}))
-		.addQuestion(new Question("Which of these films uses futuristic HCI?", "Minority Report").setFakeAnswers(new String[] {"Bambi", "Speed"}))
+		.addQuestion(new Question("12 + 5", "17").setFakeAnswers(new String[] {"15", "18"}))
+		.addQuestion(new Question("13 - 5", "7").setFakeAnswers(new String[] {"30", "15"}))
 		);
 		
 		insert(database, Quiz.class, newQuizzes);
