@@ -149,13 +149,6 @@ public class QuizActivity extends Activity implements OnItemClickListener
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.quiz, menu);
-		return false;
-	}
-
-	@Override
 	public void onItemClick(AdapterView<?> adapterView, View view, int position, long arg3)
 	{
 		Answer selectedAnswer = (Answer) adapterView.getItemAtPosition(position);
