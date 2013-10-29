@@ -11,12 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.mick88.superbrain.R;
 import com.mick88.superbrain.SuperBrainApplication;
 import com.mick88.superbrain.quiz.QuizActivity;
+import com.mick88.superbrain.quiz_creator.QuizCreatorActivity;
 import com.mick88.superbrain.quizzes.Quiz;
 import com.mick88.superbrain.quizzes.QuizManager;
 
@@ -24,9 +26,10 @@ import com.mick88.superbrain.quizzes.QuizManager;
  * A dummy fragment representing a section of the app, but that simply displays
  * dummy text.
  */
-public class SectionFragment extends Fragment
+public class SectionFragment extends Fragment implements OnItemLongClickListener
 {
 	public static final String EXTRA_CATEGORY = "quiz_category";
+	private static final int REQUEST_ID_EDIT_QUIZ = 1;
 	String categoryName;
 	List<Quiz> quizzes;
 	QuizManager quizManager;
@@ -83,6 +86,7 @@ public class SectionFragment extends Fragment
 					
 				}
 			});
+			listView.setOnItemLongClickListener(this);
 		}
 
 		/*
@@ -90,5 +94,23 @@ public class SectionFragment extends Fragment
 		 * ARG_SECTION_NUMBER)));
 		 */
 		return rootView;
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	@Override
+	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2,
+			long arg3)
+	{
+		Quiz quiz = (Quiz) arg0.getItemAtPosition(arg2);
+		Intent intent = new Intent(getActivity(), QuizCreatorActivity.class);
+		intent.putExtra(QuizCreatorActivity.EXTRA_QUIZ_ID, quiz.getId());
+		startActivityForResult(intent, REQUEST_ID_EDIT_QUIZ);
+		return true;
 	}
 }

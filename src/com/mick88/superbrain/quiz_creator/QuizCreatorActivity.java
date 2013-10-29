@@ -1,5 +1,6 @@
 package com.mick88.superbrain.quiz_creator;
 
+import android.animation.ArgbEvaluator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -15,23 +16,40 @@ import android.widget.ListView;
 import com.mick88.superbrain.R;
 import com.mick88.superbrain.quizzes.Question;
 import com.mick88.superbrain.quizzes.Quiz;
+import com.mick88.superbrain.quizzes.QuizManager;
 
 public class QuizCreatorActivity extends FragmentActivity
 {
 	Quiz quiz;
-	public static final String EXTRA_CATEGORY_NAME = "category_name";
+	public static final String EXTRA_CATEGORY_NAME = "category_name",
+			EXTRA_QUIZ_ID = "quiz_id";
 	private QuestionAdapter questionAdapter;
+	private QuizManager quizManager;
 
 	@Override
 	protected void onCreate(Bundle arg0)
 	{
 		super.onCreate(arg0);
 		setContentView(R.layout.activity_quiz_creator);
-		
-		this.quiz = new Quiz();
-		
-		EditText editCategory = (EditText) findViewById(R.id.editCategoryName);
 		Bundle extras = getIntent().getExtras();
+		quizManager = new QuizManager(getApplicationContext());
+		EditText editCategory = (EditText) findViewById(R.id.editCategoryName),
+				editName = (EditText) findViewById(R.id.editQuizName);
+		if (extras.containsKey(EXTRA_QUIZ_ID))
+		{
+			quiz = quizManager.getQuiz(extras.getInt(EXTRA_QUIZ_ID));
+			if (quiz == null)
+				throw new NullPointerException("Invalid quiz id "+String.valueOf(extras.getInt(EXTRA_QUIZ_ID)));
+			setTitle(R.string.edit_quiz);
+			getActionBar().setSubtitle(quiz.getName());
+			
+			editCategory.setText(quiz.getCategory());
+			editName.setText(quiz.getName());
+		}
+		else this.quiz = new Quiz();
+		
+		
+		
 		if (extras != null && extras.containsKey(EXTRA_CATEGORY_NAME))
 		{
 			editCategory.setText(extras.getString(EXTRA_CATEGORY_NAME));
