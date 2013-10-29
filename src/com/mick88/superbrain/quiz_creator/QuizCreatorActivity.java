@@ -92,6 +92,12 @@ public class QuizCreatorActivity extends FragmentActivity implements OnItemClick
 		questionAdapter.notifyDataSetChanged();
 	}
 	
+	void removeQuestion(Question question)
+	{
+		quiz.getQuestions().remove(question);
+		questionAdapter.notifyDataSetChanged();
+	}
+	
 	void showAddQuestionDialog(final Question editedQuestion)
 	{
 		View addQuestionView = getLayoutInflater().inflate(R.layout.create_question, (ViewGroup) getWindow().getDecorView(), false);
@@ -114,7 +120,7 @@ public class QuizCreatorActivity extends FragmentActivity implements OnItemClick
 			}
 		}
 		int confirmBtnText = editedQuestion == null ? R.string.add : R.string.update;
-		new AlertDialog.Builder(this).setView(addQuestionView)
+		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this).setView(addQuestionView)
 			.setTitle(R.string.add_question)
 			.setPositiveButton(confirmBtnText, new OnClickListener()
 			{
@@ -137,8 +143,17 @@ public class QuizCreatorActivity extends FragmentActivity implements OnItemClick
 						questionAdapter.notifyDataSetChanged();
 				}
 			})
-			.setNegativeButton(android.R.string.cancel, null)
-			.show();
+			.setNegativeButton(android.R.string.cancel, null);
+		if (editedQuestion != null) dialogBuilder.setNeutralButton("Delete", new OnClickListener()
+		{
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				removeQuestion(editedQuestion);
+			}
+		});
+		dialogBuilder.show();
 	}
 	
 	@Override
