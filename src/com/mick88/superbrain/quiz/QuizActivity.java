@@ -83,6 +83,8 @@ public class QuizActivity extends Activity implements OnItemClickListener
 	
 	void onQuizFinished()
 	{
+		ProgressBar progressBar = (ProgressBar) findViewById(android.R.id.progress);
+		progressBar.setProgress(progressBar.getMax());
 		AlertDialog dialog = new AlertDialog.Builder(this)
 			.setTitle(R.string.app_name)
 			.setIcon(R.drawable.ic_launcher)
@@ -125,7 +127,7 @@ public class QuizActivity extends Activity implements OnItemClickListener
 		ProgressBar progressBar = (ProgressBar) findViewById(android.R.id.progress);
 		TextView tvProgress = (TextView) findViewById(R.id.tvProgress);
 		progressBar.setMax(quiz.getNumQuestions());
-		progressBar.setProgress(currentQuestionId+1);
+		progressBar.setProgress(currentQuestionId);
 		tvProgress.setText(String.format(Locale.ENGLISH, "%d of %d", currentQuestionId+1, quiz.getNumQuestions()));
 	}
 	
