@@ -35,17 +35,11 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 	QuizManager quizManager;
 	private ListView listView;
 	
-	public void setCategoryName(String categoryName)
-	{
-		this.categoryName = categoryName;
-	}
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		String category = getArguments().getString(EXTRA_CATEGORY);
-		this.quizzes = quizManager.getQuizzes(category);
+		categoryName = getArguments().getString(EXTRA_CATEGORY);
 	}
 	
 	@Override
@@ -54,6 +48,11 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 		super.onAttach(activity);
 		SuperBrainApplication application = (SuperBrainApplication) activity.getApplication();
 		this.quizManager = application.getQuizManager();
+	}
+	
+	public void loadQuizzes()
+	{
+		this.quizzes = quizManager.getQuizzes(categoryName);
 	}
 	
 	void populateList()
@@ -69,7 +68,6 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 		
 		View rootView = inflater.inflate(R.layout.fragment_list_quizes,
 				container, false);
-		
 		listView = (ListView) rootView
 				.findViewById(R.id.listOfQuizzes);
 			
@@ -91,6 +89,7 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 				}
 			});
 			listView.setOnItemLongClickListener(this);
+			loadQuizzes();
 			populateList();
 
 		/*
@@ -114,7 +113,7 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 		{
 			if (resultCode == Activity.RESULT_OK)
 			{
-				this.quizzes = quizManager.getQuizzes(categoryName);
+				loadQuizzes();
 				populateList();
 			}
 		}

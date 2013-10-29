@@ -31,7 +31,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter
 		args.putString(SectionFragment.EXTRA_CATEGORY, category);
 		SectionFragment section = new SectionFragment();
 		section.setArguments(args);
-		section.setCategoryName(category);
 		
 		return section;
 	}
