@@ -61,6 +61,11 @@ public class ListQuizActivity extends FragmentActivity
 
 	}
 	
+	String getCurrentCategory()
+	{
+		return mSectionsPagerAdapter.getPageTitle(mViewPager.getCurrentItem()).toString();
+	}
+	
 	public QuizManager getQuizManager()
 	{
 		return quizManager;
@@ -99,7 +104,8 @@ public class ListQuizActivity extends FragmentActivity
 		Intent intent = getIntent();
 		if (showCategory != null)
 			intent.putExtra(EXTRA_SHOW_CATEGORY, showCategory);
-		// TODO: use current category otherwise
+		else 
+			intent.putExtra(EXTRA_SHOW_CATEGORY, getCurrentCategory());
 		finish();
 		startActivity(intent);
 	}
