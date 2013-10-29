@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item
+        android:id="@+id/menu_save"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_save"
+        android:title="@string/save_quiz"/>
+    
+     <item
+        android:id="@+id/menu_delete"
+        android:orderInCategory="90"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_delete_light"
+        android:title="@string/delete_quiz"/>
+
+</menu>

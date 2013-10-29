@@ -1,10 +1,11 @@
 package com.mick88.superbrain.quizzes;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
+import android.text.TextUtils;
 
 import com.michaldabski.msqlite.Annotations.PrimaryKey;
 
@@ -100,6 +101,18 @@ public class Quiz
 		else return name.hashCode();
 	}
 	
+	/**
+	 * Checks whether quiz is valid:
+	 * must have specified name and category
+	 * at least one question
+	 * All questions must be valid
+	 * @return
+	 */
+	public boolean validate()
+	{
+		return (TextUtils.isEmpty(name) == false && TextUtils.isEmpty(category) == false && questions.isEmpty() == false);
+	}
+	
 	@Override
 	public boolean equals(Object o)
 	{
@@ -110,5 +123,15 @@ public class Quiz
 			else 
 				return name.equals(((Quiz) o).name);
 		return super.equals(o);
+	}
+	
+	public void setCategory(String category)
+	{
+		this.category = category;
+	}
+	
+	public void setName(String name)
+	{
+		this.name = name;
 	}
 }

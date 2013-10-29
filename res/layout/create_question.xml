@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/editQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_question"
+            android:ems="10"
+            android:hint="@string/question"
+            android:singleLine="true" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/editAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_answer_correct"
+            android:ems="10"
+            android:hint="@string/correct_answer"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/editAnswer2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_answer_wrong"
+            android:ems="10"
+            android:hint="@string/answer2"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/editAnswer3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_answer_wrong"
+            android:ems="10"
+            android:hint="@string/answer3"
+            android:singleLine="true" />
+    </LinearLayout>
+
+</ScrollView>

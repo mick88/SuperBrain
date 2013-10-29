@@ -13,12 +13,16 @@ public class Question implements Serializable
 	Answer correctAnswer=null;
 	List<Answer> fakeAnswers;
 	
+	public Question()
+	{
+		this.fakeAnswers = new ArrayList<Answer>();
+	}
+	
 	public Question(String question, String answer)
 	{
+		this();
 		this.question = question;
 		this.correctAnswer = new Answer(answer);
-		
-		this.fakeAnswers = new ArrayList<Answer>();
 	}
 	
 	public Question setFakeAnswers(List<Answer> fakeAnswers)
@@ -38,9 +42,29 @@ public class Question implements Serializable
 		fakeAnswers.add(fakeAnswer);
 	}
 	
+	public void addFakeAnswer(String answerString)
+	{
+		addFakeAnswer(new Answer(answerString));
+	}
+	
 	public String getQuestion()
 	{
 		return question;
+	}
+	
+	public void setQuestion(String question)
+	{
+		this.question = question;
+	}
+	
+	public void setCorrectAnswer(Answer correctAnswer)
+	{
+		this.correctAnswer = correctAnswer;
+	}
+	
+	public void setCorrectAnswer(String answer)
+	{
+		setCorrectAnswer(new Answer(answer));
 	}
 	
 	public Answer getCorrectAnswer()

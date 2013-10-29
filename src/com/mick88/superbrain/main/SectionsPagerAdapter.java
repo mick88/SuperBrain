@@ -31,7 +31,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter
 		args.putString(SectionFragment.EXTRA_CATEGORY, category);
 		SectionFragment section = new SectionFragment();
 		section.setArguments(args);
-		section.setCategoryName(category);
 		
 		return section;
 	}
@@ -45,10 +44,25 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter
 	}
 	
 	@Override
+	public int getItemPosition(Object object)
+	{
+		// Hack for refreshing pages
+		return POSITION_NONE;
+	}
+	
+	@Override
 	public void notifyDataSetChanged()
 	{
 		categories = quizManager.getCategories();
 		super.notifyDataSetChanged();
+	}
+	
+	public int getcategoryPage(String categoryName)
+	{
+		for (int i=0; i < categories.length; i++)
+			if (categories[i].equals(categoryName))
+				return i;
+		return POSITION_NONE;
 	}
 
 	@Override
