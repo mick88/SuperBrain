@@ -29,7 +29,7 @@ import com.mick88.superbrain.quizzes.QuizManager;
 public class SectionFragment extends Fragment implements OnItemLongClickListener
 {
 	public static final String EXTRA_CATEGORY = "quiz_category";
-	private static final int REQUEST_ID_EDIT_QUIZ = 1;
+	public static final int REQUEST_ID_EDIT_QUIZ = 1;
 	String categoryName;
 	List<Quiz> quizzes;
 	QuizManager quizManager;

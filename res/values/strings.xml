@@ -18,5 +18,7 @@
     <string name="add_question">Add Question</string>
     <string name="create_quiz">Create quiz</string>
     <string name="edit_quiz">Edit quiz</string>
+    <string name="save_quiz">Save Quiz</string>
+    <string name="alert_quiz_not_complete">Quiz is not complete. Please specify category, name and add at least one question</string>
 
 </resources>

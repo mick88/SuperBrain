@@ -26,6 +26,7 @@ public class QuizCreatorActivity extends FragmentActivity
 			EXTRA_QUIZ_ID = "quiz_id";
 	private QuestionAdapter questionAdapter;
 	private QuizManager quizManager;
+	private EditText editCategory, editName;
 
 	@Override
 	protected void onCreate(Bundle arg0)
@@ -33,10 +34,12 @@ public class QuizCreatorActivity extends FragmentActivity
 		super.onCreate(arg0);
 		setContentView(R.layout.activity_quiz_creator);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		Bundle extras = getIntent().getExtras();
 		quizManager = new QuizManager(getApplicationContext());
-		EditText editCategory = (EditText) findViewById(R.id.editCategoryName),
-				editName = (EditText) findViewById(R.id.editQuizName);
+		editCategory = (EditText) findViewById(R.id.editCategoryName);
+		editName = (EditText) findViewById(R.id.editQuizName);
+		
 		if (extras.containsKey(EXTRA_QUIZ_ID))
 		{
 			quiz = quizManager.getQuiz(extras.getInt(EXTRA_QUIZ_ID));
@@ -111,6 +114,23 @@ public class QuizCreatorActivity extends FragmentActivity
 		{
 			case R.id.menu_add_question:
 				showAddQuestionDialog();
+				return true;
+			case R.id.menu_save:
+				quiz.setCategory(editCategory.getText().toString());
+				quiz.setName(editName.getText().toString());
+				if (quiz.validate())
+				{
+					quizManager.replace(quiz);
+					setResult(RESULT_OK);
+					finish();
+				}
+				else
+				{
+					new AlertDialog.Builder(this)
+						.setMessage(R.string.alert_quiz_not_complete)
+						.setPositiveButton(android.R.string.ok, null)
+						.show();
+				}
 				return true;
 			case android.R.id.home:
 				onBackPressed();

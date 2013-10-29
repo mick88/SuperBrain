@@ -5,6 +5,13 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:icon="@drawable/ic_add"
-        android:title="Add Question"/>
+        android:title="@string/add_question"/>
+    
+    <item
+        android:id="@+id/menu_save"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_save"
+        android:title="@string/save_quiz"/>
 
 </menu>

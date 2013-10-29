@@ -83,7 +83,7 @@ public class ListQuizActivity extends FragmentActivity
 			case R.id.menu_quiz_create:
 				Intent intent = new Intent(getApplicationContext(), QuizCreatorActivity.class);
 				intent.putExtra(QuizCreatorActivity.EXTRA_CATEGORY_NAME, mSectionsPagerAdapter.getPageTitle(mViewPager.getCurrentItem()));
-				startActivity(intent);
+				startActivityForResult(intent, SectionFragment.REQUEST_ID_EDIT_QUIZ);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
