@@ -76,6 +76,17 @@ public class ListQuizActivity extends FragmentActivity
 	}
 	
 	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == SectionFragment.REQUEST_ID_EDIT_QUIZ)
+		{
+			if (resultCode == RESULT_OK)
+				mSectionsPagerAdapter.notifyDataSetChanged();
+		}
+	}
+	
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		switch (item.getItemId())

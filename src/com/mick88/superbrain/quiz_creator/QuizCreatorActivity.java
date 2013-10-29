@@ -65,8 +65,7 @@ public class QuizCreatorActivity extends FragmentActivity
 		listQuestions.setAdapter(questionAdapter);
 		
 		listFooter.setOnClickListener(new View.OnClickListener()
-		{
-			
+		{			
 			@Override
 			public void onClick(View v)
 			{

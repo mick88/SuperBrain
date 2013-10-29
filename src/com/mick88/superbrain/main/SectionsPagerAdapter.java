@@ -45,6 +45,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter
 	}
 	
 	@Override
+	public int getItemPosition(Object object)
+	{
+		// Hack for refreshing pages
+		return POSITION_NONE;
+	}
+	
+	@Override
 	public void notifyDataSetChanged()
 	{
 		categories = quizManager.getCategories();
