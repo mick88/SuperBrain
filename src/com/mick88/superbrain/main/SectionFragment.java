@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,8 +114,14 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 		{
 			if (resultCode == Activity.RESULT_OK)
 			{
-				loadQuizzes();
-				populateList();
+				FragmentActivity activity = getActivity();
+				if (activity instanceof ListQuizActivity)
+					((ListQuizActivity) activity).reloadCategories(data.getStringExtra(QuizCreatorActivity.EXTRA_CATEGORY_NAME));
+				else
+				{
+					loadQuizzes();
+					populateList();
+				}
 			}
 		}
 	}

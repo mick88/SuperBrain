@@ -90,7 +90,7 @@ public class ListQuizActivity extends FragmentActivity
 		}
 	}
 	
-	void reloadCategories(String showCategory)
+	public void reloadCategories(String showCategory)
 	{
 		Intent intent = getIntent();
 		if (showCategory != null)
