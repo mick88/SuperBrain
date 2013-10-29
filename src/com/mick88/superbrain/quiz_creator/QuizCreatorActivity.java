@@ -50,9 +50,7 @@ public class QuizCreatorActivity extends FragmentActivity
 			editCategory.setText(quiz.getCategory());
 			editName.setText(quiz.getName());
 		}
-		else this.quiz = new Quiz();
-		
-		
+		else this.quiz = new Quiz();		
 		
 		if (extras != null && extras.containsKey(EXTRA_CATEGORY_NAME))
 		{
@@ -61,8 +59,20 @@ public class QuizCreatorActivity extends FragmentActivity
 		}
 		
 		ListView listQuestions = (ListView) findViewById(R.id.listQuestions);
+		View listFooter = getLayoutInflater().inflate(R.layout.list_footer_add_question, listQuestions, false);
+		listQuestions.addFooterView(listFooter);
 		questionAdapter = new QuestionAdapter(this, quiz);
 		listQuestions.setAdapter(questionAdapter);
+		
+		listFooter.setOnClickListener(new View.OnClickListener()
+		{
+			
+			@Override
+			public void onClick(View v)
+			{
+				showAddQuestionDialog();
+			}
+		});
 	}
 	
 	@Override
@@ -111,9 +121,6 @@ public class QuizCreatorActivity extends FragmentActivity
 	{
 		switch (item.getItemId())
 		{
-			case R.id.menu_add_question:
-				showAddQuestionDialog();
-				return true;
 			case R.id.menu_save:
 				quiz.setCategory(editCategory.getText().toString());
 				quiz.setName(editName.getText().toString());
