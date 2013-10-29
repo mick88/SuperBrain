@@ -3,13 +3,16 @@ package com.mick88.superbrain.main;
 
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import com.mick88.superbrain.R;
 import com.mick88.superbrain.SuperBrainApplication;
+import com.mick88.superbrain.quiz_creator.QuizCreatorActivity;
 import com.mick88.superbrain.quizzes.QuizManager;
 
 public class ListQuizActivity extends FragmentActivity
@@ -70,6 +73,21 @@ public class ListQuizActivity extends FragmentActivity
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.list_quiz, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+			case R.id.menu_quiz_create:
+				Intent intent = new Intent(getApplicationContext(), QuizCreatorActivity.class);
+				intent.putExtra(QuizCreatorActivity.EXTRA_CATEGORY_NAME, mSectionsPagerAdapter.getPageTitle(mViewPager.getCurrentItem()));
+				startActivity(intent);
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 
 }
