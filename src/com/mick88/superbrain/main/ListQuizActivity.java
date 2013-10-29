@@ -82,8 +82,14 @@ public class ListQuizActivity extends FragmentActivity
 		if (requestCode == SectionFragment.REQUEST_ID_EDIT_QUIZ)
 		{
 			if (resultCode == RESULT_OK)
-				mSectionsPagerAdapter.notifyDataSetChanged();
+				reloadCategories();
 		}
+	}
+	
+	void reloadCategories()
+	{
+		startActivity(new Intent(getApplicationContext(), ListQuizActivity.class));
+		finish();
 	}
 	
 	@Override
