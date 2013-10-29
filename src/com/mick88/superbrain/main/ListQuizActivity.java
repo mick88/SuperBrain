@@ -86,7 +86,11 @@ public class ListQuizActivity extends FragmentActivity
 		if (requestCode == SectionFragment.REQUEST_ID_EDIT_QUIZ)
 		{
 			if (resultCode == RESULT_OK)
-				reloadCategories(data.getStringExtra(QuizCreatorActivity.EXTRA_CATEGORY_NAME));
+			{
+				String category=null;
+				if (data != null) category = data.getStringExtra(QuizCreatorActivity.EXTRA_CATEGORY_NAME);
+				reloadCategories(category);
+			}
 		}
 	}
 	
@@ -95,6 +99,7 @@ public class ListQuizActivity extends FragmentActivity
 		Intent intent = getIntent();
 		if (showCategory != null)
 			intent.putExtra(EXTRA_SHOW_CATEGORY, showCategory);
+		// TODO: use current category otherwise
 		finish();
 		startActivity(intent);
 	}

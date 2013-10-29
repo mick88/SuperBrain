@@ -183,6 +183,23 @@ public class QuizCreatorActivity extends FragmentActivity implements OnItemClick
 			case android.R.id.home:
 				onBackPressed();
 				return true;
+			case R.id.menu_delete:
+				new AlertDialog.Builder(this).setMessage("Delete this quiz?")
+					.setTitle(R.string.delete_quiz)
+					.setPositiveButton("Delete", new OnClickListener()
+					{
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{
+							quizManager.delete(quiz);
+							setResult(RESULT_OK);
+							finish();
+						}
+					})
+					.setNegativeButton(android.R.string.cancel, null)
+					.show();
+				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}		

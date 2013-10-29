@@ -116,7 +116,11 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 			{
 				FragmentActivity activity = getActivity();
 				if (activity instanceof ListQuizActivity)
-					((ListQuizActivity) activity).reloadCategories(data.getStringExtra(QuizCreatorActivity.EXTRA_CATEGORY_NAME));
+				{
+					String category = null;
+					if (data != null) category = data.getStringExtra(QuizCreatorActivity.EXTRA_CATEGORY_NAME);
+					((ListQuizActivity) activity).reloadCategories(category);
+				}
 				else
 				{
 					loadQuizzes();
