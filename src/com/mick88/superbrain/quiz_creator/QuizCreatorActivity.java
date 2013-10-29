@@ -11,15 +11,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.mick88.superbrain.R;
 import com.mick88.superbrain.quizzes.Question;
 import com.mick88.superbrain.quizzes.Quiz;
 import com.mick88.superbrain.quizzes.QuizManager;
 
-public class QuizCreatorActivity extends FragmentActivity
+public class QuizCreatorActivity extends FragmentActivity implements OnItemClickListener
 {
 	Quiz quiz;
 	public static final String EXTRA_CATEGORY_NAME = "category_name",
@@ -64,13 +66,14 @@ public class QuizCreatorActivity extends FragmentActivity
 		listQuestions.addFooterView(listFooter);
 		questionAdapter = new QuestionAdapter(this, quiz);
 		listQuestions.setAdapter(questionAdapter);
+		listQuestions.setOnItemClickListener(this);
 		
 		listFooter.findViewById(android.R.id.text1).setOnClickListener(new View.OnClickListener()
 		{			
 			@Override
 			public void onClick(View v)
 			{
-				showAddQuestionDialog();
+				showAddQuestionDialog(null);
 			}
 		});
 	}
@@ -89,27 +92,49 @@ public class QuizCreatorActivity extends FragmentActivity
 		questionAdapter.notifyDataSetChanged();
 	}
 	
-	void showAddQuestionDialog()
+	void showAddQuestionDialog(final Question editedQuestion)
 	{
-		final View addQuestionView = getLayoutInflater().inflate(R.layout.create_question, (ViewGroup) getWindow().getDecorView(), false);
+		View addQuestionView = getLayoutInflater().inflate(R.layout.create_question, (ViewGroup) getWindow().getDecorView(), false);
+		final EditText editQuestion = (EditText) addQuestionView.findViewById(R.id.editQuestion),
+				editAnswer = (EditText) addQuestionView.findViewById(R.id.editAnswer),
+				editAnswer2 = (EditText) addQuestionView.findViewById(R.id.editAnswer2),
+				editAnswer3 = (EditText) addQuestionView.findViewById(R.id.editAnswer3);
 		
+		if (editedQuestion != null)
+		{
+			editQuestion.setText(editedQuestion.getQuestion());
+			editAnswer.setText(editedQuestion.getCorrectAnswer().toString());
+			if (editedQuestion.getFakeAnswers().isEmpty() == false)
+			{
+				editAnswer2.setText(editedQuestion.getFakeAnswers().get(0).toString());
+				if (editedQuestion.getFakeAnswers().size() > 1)
+				{
+					editAnswer3.setText(editedQuestion.getFakeAnswers().get(1).toString());
+				}
+			}
+		}
+		int confirmBtnText = editedQuestion == null ? R.string.add : R.string.update;
 		new AlertDialog.Builder(this).setView(addQuestionView)
 			.setTitle(R.string.add_question)
-			.setPositiveButton(R.string.add, new OnClickListener()
+			.setPositiveButton(confirmBtnText, new OnClickListener()
 			{
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
-					EditText editQuestion = (EditText) addQuestionView.findViewById(R.id.editQuestion),
-							editAnswer = (EditText) addQuestionView.findViewById(R.id.editAnswer),
-							editAnswer2 = (EditText) addQuestionView.findViewById(R.id.editAnswer2),
-							editAnswer3 = (EditText) addQuestionView.findViewById(R.id.editAnswer3);
-					Question question = new Question(editQuestion.getText().toString(), editAnswer.getText().toString());
+					final Question question;
+					if (editedQuestion == null) question = new Question();
+					else question = editedQuestion;
+					
+					question.setQuestion(editQuestion.getText().toString());
+					question.setCorrectAnswer(editAnswer.getText().toString());
 					question.addFakeAnswer(editAnswer2.getText().toString());
 					question.addFakeAnswer(editAnswer3.getText().toString());
 					
-					addQuestion(question);
+					if (editedQuestion == null)					
+						addQuestion(question);
+					else 
+						questionAdapter.notifyDataSetChanged();
 				}
 			})
 			.setNegativeButton(android.R.string.cancel, null)
@@ -161,5 +186,12 @@ public class QuizCreatorActivity extends FragmentActivity
 			default:
 				return super.onOptionsItemSelected(item);
 		}		
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> adapterView, View arg1, int position, long arg3)
+	{
+		Question question = (Question) adapterView.getItemAtPosition(position);	
+		showAddQuestionDialog(question);
 	}
 }

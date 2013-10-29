@@ -22,5 +22,6 @@
     <string name="alert_quiz_not_complete">Quiz is not complete. Please add some questions.</string>
     <string name="please_specify_category">Please specify category</string>
     <string name="please_enter_name_for_your_quiz">Please enter name for your quiz</string>
+    <string name="update">Update</string>
 
 </resources>
