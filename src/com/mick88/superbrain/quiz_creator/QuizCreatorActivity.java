@@ -65,7 +65,7 @@ public class QuizCreatorActivity extends FragmentActivity
 		questionAdapter = new QuestionAdapter(this, quiz);
 		listQuestions.setAdapter(questionAdapter);
 		
-		listFooter.setOnClickListener(new View.OnClickListener()
+		listFooter.findViewById(android.R.id.text1).setOnClickListener(new View.OnClickListener()
 		{			
 			@Override
 			public void onClick(View v)
