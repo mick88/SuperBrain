@@ -13,6 +13,7 @@
         android:id="@+id/menu_quiz_create"
         android:showAsAction="always"
         android:titleCondensed="Create"
+        android:icon="@drawable/ic_create"
         android:title="Create quiz">
     </item>
 
