@@ -1,7 +1,6 @@
 package com.mick88.superbrain.quizzes;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -110,5 +109,10 @@ public class Quiz
 			else 
 				return name.equals(((Quiz) o).name);
 		return super.equals(o);
+	}
+	
+	public void setCategory(String category)
+	{
+		this.category = category;
 	}
 }

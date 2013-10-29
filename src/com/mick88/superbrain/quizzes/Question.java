@@ -38,6 +38,11 @@ public class Question implements Serializable
 		fakeAnswers.add(fakeAnswer);
 	}
 	
+	public void addFakeAnswer(String answerString)
+	{
+		addFakeAnswer(new Answer(answerString));
+	}
+	
 	public String getQuestion()
 	{
 		return question;
