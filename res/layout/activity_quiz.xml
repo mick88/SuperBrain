@@ -18,7 +18,7 @@
         android:id="@+id/quizProgress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/ui_padding"
         android:layout_alignParentBottom="true"
         layout="@layout/quiz_progress" />
 
