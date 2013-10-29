@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +32,7 @@ public class QuizCreatorActivity extends FragmentActivity
 	{
 		super.onCreate(arg0);
 		setContentView(R.layout.activity_quiz_creator);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		Bundle extras = getIntent().getExtras();
 		quizManager = new QuizManager(getApplicationContext());
 		EditText editCategory = (EditText) findViewById(R.id.editCategoryName),
@@ -109,6 +111,9 @@ public class QuizCreatorActivity extends FragmentActivity
 		{
 			case R.id.menu_add_question:
 				showAddQuestionDialog();
+				return true;
+			case android.R.id.home:
+				onBackPressed();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
