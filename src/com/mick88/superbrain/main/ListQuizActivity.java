@@ -17,7 +17,7 @@ import com.mick88.superbrain.quizzes.QuizManager;
 
 public class ListQuizActivity extends FragmentActivity
 {
-
+	public static final String EXTRA_SHOW_CATEGORY = "category";
 	QuizManager quizManager;
 	SuperBrainApplication application;
 	
@@ -54,6 +54,10 @@ public class ListQuizActivity extends FragmentActivity
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
+		
+		int page = mSectionsPagerAdapter.getcategoryPage(getIntent().getStringExtra(EXTRA_SHOW_CATEGORY));
+		if (page > -1) 
+			mViewPager.setCurrentItem(page);
 
 	}
 	
@@ -82,13 +86,16 @@ public class ListQuizActivity extends FragmentActivity
 		if (requestCode == SectionFragment.REQUEST_ID_EDIT_QUIZ)
 		{
 			if (resultCode == RESULT_OK)
-				reloadCategories();
+				reloadCategories(data.getStringExtra(QuizCreatorActivity.EXTRA_CATEGORY_NAME));
 		}
 	}
 	
-	void reloadCategories()
+	void reloadCategories(String showCategory)
 	{
-		startActivity(new Intent(getApplicationContext(), ListQuizActivity.class));
+		Intent intent = new Intent(getApplicationContext(), ListQuizActivity.class);
+		if (showCategory != null)
+			intent.putExtra(EXTRA_SHOW_CATEGORY, showCategory);
+		startActivity(intent);
 		finish();
 	}
 	

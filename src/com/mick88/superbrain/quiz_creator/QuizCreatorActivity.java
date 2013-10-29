@@ -3,6 +3,7 @@ package com.mick88.superbrain.quiz_creator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
@@ -141,7 +142,9 @@ public class QuizCreatorActivity extends FragmentActivity
 				if (quiz.validate())
 				{
 					quizManager.replace(quiz);
-					setResult(RESULT_OK);
+					Intent intent = new Intent();
+					intent.putExtra(EXTRA_CATEGORY_NAME, quiz.getCategory());
+					setResult(RESULT_OK, intent);
 					finish();
 				}
 				else

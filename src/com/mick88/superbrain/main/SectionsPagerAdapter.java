@@ -56,6 +56,14 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter
 		categories = quizManager.getCategories();
 		super.notifyDataSetChanged();
 	}
+	
+	public int getcategoryPage(String categoryName)
+	{
+		for (int i=0; i < categories.length; i++)
+			if (categories[i].equals(categoryName))
+				return i;
+		return POSITION_NONE;
+	}
 
 	@Override
 	public CharSequence getPageTitle(int position)
