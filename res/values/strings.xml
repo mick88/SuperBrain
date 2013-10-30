@@ -24,6 +24,6 @@
     <string name="please_enter_name_for_your_quiz">Please enter name for your quiz</string>
     <string name="update">Update</string>
     <string name="delete_quiz">Delete quiz</string>
-    <string name="delete_this_quiz_">Delete this quiz?</string>
+    <string name="delete_this_quiz_">Delete %s quiz?</string>
 
 </resources>
