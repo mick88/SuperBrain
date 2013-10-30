@@ -199,7 +199,7 @@ public class QuizCreatorActivity extends FragmentActivity implements OnItemClick
 				onBackPressed();
 				return true;
 			case R.id.menu_delete:
-				new AlertDialog.Builder(this).setMessage("Delete this quiz?")
+				new AlertDialog.Builder(this).setMessage(getString(R.string.delete_this_quiz_, quiz.getName()))
 					.setTitle(R.string.delete_quiz)
 					.setPositiveButton("Delete", new OnClickListener()
 					{
