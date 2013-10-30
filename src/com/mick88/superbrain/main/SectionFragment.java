@@ -7,12 +7,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -27,7 +30,7 @@ import com.mick88.superbrain.quizzes.QuizManager;
  * A dummy fragment representing a section of the app, but that simply displays
  * dummy text.
  */
-public class SectionFragment extends Fragment implements OnItemLongClickListener
+public class SectionFragment extends Fragment 
 {
 	public static final String EXTRA_CATEGORY = "quiz_category";
 	public static final int REQUEST_ID_EDIT_QUIZ = 1;
@@ -35,6 +38,7 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 	List<Quiz> quizzes;
 	QuizManager quizManager;
 	private ListView listView;
+	private int selectedQuizId= -1;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -71,6 +75,7 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 				container, false);
 		listView = (ListView) rootView
 				.findViewById(R.id.listOfQuizzes);
+		registerForContextMenu(listView);
 			
 			listView.setOnItemClickListener(new OnItemClickListener()
 			{
@@ -89,7 +94,6 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 					
 				}
 			});
-			listView.setOnItemLongClickListener(this);
 			loadQuizzes();
 			populateList();
 
@@ -129,15 +133,48 @@ public class SectionFragment extends Fragment implements OnItemLongClickListener
 			}
 		}
 	}
-
-	@Override
-	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2,
-			long arg3)
+	
+	Quiz getSelectedQuiz()
 	{
-		Quiz quiz = (Quiz) arg0.getItemAtPosition(arg2);
+		if (listView != null)
+		{
+			int position = listView.getSelectedItemPosition();
+			if (position < 0) return null;
+			return (Quiz) listView.getAdapter().getItem(position);
+		}
+		else return null;
+	}
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo)
+	{
+		if (v.getId() == R.id.listOfQuizzes)
+		{
+			MenuInflater inflater = getActivity().getMenuInflater();
+			inflater.inflate(R.menu.quiz_context_menu, menu);
+			menu.setHeaderTitle(getSelectedQuiz().getName());
+			return;
+		}
+		super.onCreateContextMenu(menu, v, menuInfo);
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+			case R.id.menu_edit:
+				editQuiz(getSelectedQuiz());
+				return true;
+		}
+		return super.onContextItemSelected(item);
+	}
+	
+	void editQuiz(Quiz quiz)
+	{
 		Intent intent = new Intent(getActivity(), QuizCreatorActivity.class);
 		intent.putExtra(QuizCreatorActivity.EXTRA_QUIZ_ID, quiz.getId());
 		startActivityForResult(intent, REQUEST_ID_EDIT_QUIZ);
-		return true;
 	}
 }
