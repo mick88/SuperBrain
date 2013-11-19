@@ -21,6 +21,7 @@ public class AnswersActivity extends ListActivity
 	{
 		super.onCreate(savedInstanceState);
 		getListView().setDividerHeight(0);
+		getListView().setSelector(android.R.color.transparent);
 		Quiz quiz = (Quiz) getIntent().getSerializableExtra(EXTRA_QUIZ);
 		getActionBar().setTitle(quiz.getName());
 		getActionBar().setSubtitle(quiz.getCategory());
