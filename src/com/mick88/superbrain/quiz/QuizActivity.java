@@ -115,6 +115,8 @@ public class QuizActivity extends Activity implements OnItemClickListener
 					Intent intent = new Intent(getApplicationContext(), AnswersActivity.class);
 					intent.putExtra(AnswersActivity.EXTRA_ANSWER_MAP, answeredQuestions);
 					startActivity(intent);
+					
+					finish();
 				}
 			})
 			.setCancelable(false)
