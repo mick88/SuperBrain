@@ -11,18 +11,18 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.mick88.superbrain.R;
 import com.mick88.superbrain.SuperBrainApplication;
+import com.mick88.superbrain.quiz.answers_activity.AnswersActivity;
 import com.mick88.superbrain.quizzes.Answer;
 import com.mick88.superbrain.quizzes.Question;
 import com.mick88.superbrain.quizzes.Quiz;
@@ -74,11 +74,18 @@ public class QuizActivity extends Activity implements OnItemClickListener
 	
 	private void onAnswerSelected(Answer answer)
 	{
-		answeredQuestions.put(getCurrentQuestion(), answer);
-		if (getCurrentQuestion().isCorrectAnswer(answer)) correctAnswers++;
-		currentQuestionId++;
-		if (currentQuestionId < quiz.getQuestions().size()) displayCurrentQuestion();
-		else onQuizFinished();
+		try
+		{
+			answeredQuestions.put(getCurrentQuestion(), answer);
+			if (getCurrentQuestion().isCorrectAnswer(answer)) correctAnswers++;
+			currentQuestionId++;
+			if (currentQuestionId < quiz.getQuestions().size()) displayCurrentQuestion();
+			else onQuizFinished();
+		}
+		catch (ArrayIndexOutOfBoundsException e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	void onQuizFinished()
@@ -99,14 +106,15 @@ public class QuizActivity extends Activity implements OnItemClickListener
 					
 				}
 			})
-			.setNeutralButton("Show answers", new Dialog.OnClickListener()
+			.setNeutralButton(R.string.show_answers, new Dialog.OnClickListener()
 			{
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
-					finish();
-					
+					Intent intent = new Intent(getApplicationContext(), AnswersActivity.class);
+					intent.putExtra(AnswersActivity.EXTRA_ANSWER_MAP, answeredQuestions);
+					startActivity(intent);
 				}
 			})
 			.setCancelable(false)
@@ -131,7 +139,7 @@ public class QuizActivity extends Activity implements OnItemClickListener
 		tvProgress.setText(String.format(Locale.ENGLISH, "%d of %d", currentQuestionId+1, quiz.getNumQuestions()));
 	}
 	
-	private Question getCurrentQuestion()
+	private Question getCurrentQuestion() throws ArrayIndexOutOfBoundsException
 	{
 		return quiz.getQuestions().get(currentQuestionId);
 	}

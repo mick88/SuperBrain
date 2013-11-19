@@ -25,5 +25,7 @@
     <string name="update">Update</string>
     <string name="delete_quiz">Delete quiz</string>
     <string name="delete_this_quiz_">Delete %s quiz?</string>
+    <string name="answers">Answers</string>
+    <string name="show_answers">Show answers</string>
 
 </resources>

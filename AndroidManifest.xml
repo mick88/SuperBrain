@@ -32,6 +32,11 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/create_quiz" >
         </activity>
+        <activity
+            android:name="com.mick88.superbrain.quiz.answers_activity.AnswersActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:label="@string/answers" >
+        </activity>
     </application>
 
 </manifest>
