@@ -1,5 +1,6 @@
 package com.mick88.superbrain.quizzes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +10,7 @@ import android.text.TextUtils;
 
 import com.michaldabski.msqlite.Annotations.PrimaryKey;
 
-public class Quiz
+public class Quiz implements Serializable
 {
 	@PrimaryKey
 	Integer id=null;

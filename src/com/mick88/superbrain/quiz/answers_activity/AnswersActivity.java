@@ -9,16 +9,21 @@ import android.widget.ArrayAdapter;
 
 import com.mick88.superbrain.quizzes.Answer;
 import com.mick88.superbrain.quizzes.Question;
+import com.mick88.superbrain.quizzes.Quiz;
 
 public class AnswersActivity extends ListActivity
 {
 	public static final String EXTRA_ANSWER_MAP = "answers";
+	public static final String EXTRA_QUIZ = "quiz";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		getListView().setDividerHeight(0);
+		Quiz quiz = (Quiz) getIntent().getSerializableExtra(EXTRA_QUIZ);
+		getActionBar().setTitle(quiz.getName());
+		getActionBar().setSubtitle(quiz.getCategory());
 		@SuppressWarnings("unchecked")
 		AnsweredQuestion [] answers = getAnswerList((Map<Question, Answer>) getIntent().getSerializableExtra(EXTRA_ANSWER_MAP));
 		ArrayAdapter<AnsweredQuestion> answerAdapter = new AnswerAdapter(this, answers); 

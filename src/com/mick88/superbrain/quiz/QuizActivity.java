@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.mick88.superbrain.R;
 import com.mick88.superbrain.SuperBrainApplication;
+import com.mick88.superbrain.quiz.answers_activity.AnswerAdapter;
 import com.mick88.superbrain.quiz.answers_activity.AnswersActivity;
 import com.mick88.superbrain.quizzes.Answer;
 import com.mick88.superbrain.quizzes.Question;
@@ -114,6 +115,7 @@ public class QuizActivity extends Activity implements OnItemClickListener
 				{
 					Intent intent = new Intent(getApplicationContext(), AnswersActivity.class);
 					intent.putExtra(AnswersActivity.EXTRA_ANSWER_MAP, answeredQuestions);
+					intent.putExtra(AnswersActivity.EXTRA_QUIZ, quiz);
 					startActivity(intent);
 					
 					finish();
