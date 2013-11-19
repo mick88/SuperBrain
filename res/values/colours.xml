@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="activity_background">#E5E5E5</color>
+    <color name="answer_correct">#669900</color>
+    <color name="answer_wrong">#CC0000</color>
 </resources>

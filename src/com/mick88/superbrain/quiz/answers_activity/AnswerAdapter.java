@@ -54,6 +54,7 @@ public class AnswerAdapter extends ArrayAdapter<AnsweredQuestion>
 		AnsweredQuestion answeredQuestion = getItem(position);
 		holder.tvQuestion.setText(answeredQuestion.getQuestion().toString());
 		holder.tvAnswer.setText(answeredQuestion.getSelectedAnswer().toString());
+		holder.tvAnswer.setTextColor(getContext().getResources().getColor(answeredQuestion.isCorrect() ? R.color.answer_correct : R.color.answer_wrong));
 		holder.imgIcon.setImageResource(answeredQuestion.isCorrect() ? R.drawable.ic_answer_correct : R.drawable.ic_answer_wrong);
 		
 		return view;
