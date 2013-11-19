@@ -22,7 +22,6 @@ import android.widget.TextView;
 
 import com.mick88.superbrain.R;
 import com.mick88.superbrain.SuperBrainApplication;
-import com.mick88.superbrain.quiz.answers_activity.AnswerAdapter;
 import com.mick88.superbrain.quiz.answers_activity.AnswersActivity;
 import com.mick88.superbrain.quizzes.Answer;
 import com.mick88.superbrain.quizzes.Question;

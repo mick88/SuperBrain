@@ -14,7 +14,9 @@ public class AnswerAdapter extends ArrayAdapter<AnsweredQuestion>
 {
 	private static class ViewHolder
 	{
-		TextView tvQuestion, tvAnswer;
+		TextView tvQuestion, 
+			tvAnswer, 
+			tvCorrectAnswer;
 		ImageView imgIcon;
 	}
 	
@@ -47,6 +49,7 @@ public class AnswerAdapter extends ArrayAdapter<AnsweredQuestion>
 			holder = new ViewHolder();
 			holder.tvQuestion = (TextView) view.findViewById(R.id.tvQuestion);
 			holder.tvAnswer = (TextView) view.findViewById(R.id.tvAnswer);
+			holder.tvCorrectAnswer = (TextView) view.findViewById(R.id.tvCorrectAnswer);
 			holder.imgIcon = (ImageView) view.findViewById(android.R.id.icon);
 			view.setTag(holder);
 		}
@@ -56,7 +59,8 @@ public class AnswerAdapter extends ArrayAdapter<AnsweredQuestion>
 		holder.tvAnswer.setText(answeredQuestion.getSelectedAnswer().toString());
 		holder.tvAnswer.setTextColor(getContext().getResources().getColor(answeredQuestion.isCorrect() ? R.color.answer_correct : R.color.answer_wrong));
 		holder.imgIcon.setImageResource(answeredQuestion.isCorrect() ? R.drawable.ic_answer_correct : R.drawable.ic_answer_wrong);
-		
+		holder.tvCorrectAnswer.setText(answeredQuestion.getCorrectanswer().toString());
+		holder.tvCorrectAnswer.setVisibility(answeredQuestion.isCorrect() ? View.GONE : View.VISIBLE);
 		return view;
 	}
 }

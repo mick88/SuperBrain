@@ -41,4 +41,9 @@ public class AnsweredQuestion
 	{
 		return selectedAnswer;
 	}
+	
+	public Answer getCorrectanswer()
+	{
+		return question.getCorrectAnswer();
+	}
 }

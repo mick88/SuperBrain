@@ -36,6 +36,14 @@
             android:layout_alignLeft="@+id/tvQuestion"
             android:layout_below="@+id/tvQuestion"
             android:text="Anwer" />
+        
+        <TextView
+            android:id="@+id/tvCorrectAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvQuestion"
+            android:layout_below="@+id/tvAnswer"
+            android:text="Correct answer" />
     </RelativeLayout>
 
 </FrameLayout>
