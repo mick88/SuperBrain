@@ -5,13 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.mick88.superbrain.R;
 
 public class AnswerAdapter extends ArrayAdapter<AnsweredQuestion>
 {
 	private static class ViewHolder
 	{
 		TextView tvQuestion, tvAnswer;
+		ImageView imgIcon;
 	}
 	
 	public AnswerAdapter(Context context,
@@ -35,20 +39,22 @@ public class AnswerAdapter extends ArrayAdapter<AnsweredQuestion>
 	{
 		if (view == null)
 			view = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-				.inflate(android.R.layout.simple_list_item_2, parent, false);
+				.inflate(R.layout.list_item_revealed_answer, parent, false);
 		
 		ViewHolder holder = (ViewHolder) view.getTag();
 		if (holder == null)
 		{
 			holder = new ViewHolder();
-			holder.tvQuestion = (TextView) view.findViewById(android.R.id.text1);
-			holder.tvAnswer = (TextView) view.findViewById(android.R.id.text2);
+			holder.tvQuestion = (TextView) view.findViewById(R.id.tvQuestion);
+			holder.tvAnswer = (TextView) view.findViewById(R.id.tvAnswer);
+			holder.imgIcon = (ImageView) view.findViewById(android.R.id.icon);
 			view.setTag(holder);
 		}
 		
 		AnsweredQuestion answeredQuestion = getItem(position);
 		holder.tvQuestion.setText(answeredQuestion.getQuestion().toString());
 		holder.tvAnswer.setText(answeredQuestion.getSelectedAnswer().toString());
+		holder.imgIcon.setImageResource(answeredQuestion.isCorrect() ? R.drawable.ic_answer_correct : R.drawable.ic_answer_wrong);
 		
 		return view;
 	}
