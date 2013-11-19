@@ -18,6 +18,7 @@ public class AnswersActivity extends ListActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		getListView().setDividerHeight(0);
 		@SuppressWarnings("unchecked")
 		AnsweredQuestion [] answers = getAnswerList((Map<Question, Answer>) getIntent().getSerializableExtra(EXTRA_ANSWER_MAP));
 		ArrayAdapter<AnsweredQuestion> answerAdapter = new AnswerAdapter(this, answers); 

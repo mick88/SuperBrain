@@ -2,7 +2,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/ui_padding" >
+    android:paddingLeft="@dimen/ui_padding"
+    android:paddingRight="@dimen/ui_padding"
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp"
+    >
 
     <RelativeLayout
         android:layout_width="wrap_content"
